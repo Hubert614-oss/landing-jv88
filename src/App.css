@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+
+/* animation de 8 images */
+.game-image {
+  opacity: 0;
+}
+
+.game-image-left {
+  transform: scale(0.7) rotate(-15deg);
+}
+
+.game-image-right {
+  transform: scale(0.7) rotate(15deg);
+}
+
+.game-image-visible {
+  animation-duration: 600ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.game-image-left.game-image-visible {
+  animation-name: gameRevealLeft;
+}
+
+.game-image-right.game-image-visible {
+  animation-name: gameRevealRight;
+}
+
+@keyframes gameRevealLeft {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-15deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes gameRevealRight {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(15deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(-5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
