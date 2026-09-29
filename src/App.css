@@ -61,3 +61,37 @@
     transform: scale(1) rotate(0deg);
   }
 }
+
+/* grande image animation */
+.game-dm-image {
+  transform: scale(0.88);
+  transform-origin: center;
+}
+
+.game-dm-image-show {
+  animation: gameDmZoomIn 450ms ease-out forwards;
+}
+
+.game-dm-image-hide {
+  animation: gameDmZoomOut 300ms ease-in forwards;
+}
+
+@keyframes gameDmZoomIn {
+  from {
+    transform: scale(0.88);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes gameDmZoomOut {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.88);
+  }
+}

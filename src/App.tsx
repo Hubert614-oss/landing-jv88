@@ -54,32 +54,66 @@ function App() {
     sweetBonanzaDm
   ]
 
-
   const gameSectionRef = useRef<HTMLElement | null>(null)
+  const gameDmSectionRef = useRef<HTMLElement | null>(null)
+
   const [gameSectionVisible, setGameSectionVisible] = useState(false)
+  const [gameDmSectionVisible, setGameDmSectionVisible] = useState(false)
+
+  // useEffect(() => {
+  //   const section = gameSectionRef.current
+
+  //   if (!section) return
+
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       setGameSectionVisible(entry.isIntersecting)
+  //     },
+  //     {
+  //       threshold: 0.25,
+  //     }
+  //   )
+
+  //   observer.observe(section)
+
+  //   return () => {
+  //     observer.disconnect()
+  //   }
+  // }, [])
 
   useEffect(() => {
-    const section = gameSectionRef.current
-
-    if (!section) return
+    const gameSection = gameSectionRef.current
+    const gameDmSection = gameDmSectionRef.current
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setGameSectionVisible(entry.isIntersecting)
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === gameSection) {
+            setGameSectionVisible(entry.isIntersecting)
+          }
+
+          if (entry.target === gameDmSection) {
+            setGameDmSectionVisible(entry.isIntersecting)
+          }
+        })
       },
       {
-        threshold: 0.25,
+        threshold: 0.2,
       }
     )
 
-    observer.observe(section)
+    if (gameSection) {
+      observer.observe(gameSection)
+    }
+
+    if (gameDmSection) {
+      observer.observe(gameDmSection)
+    }
 
     return () => {
       observer.disconnect()
     }
   }, [])
-
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -111,16 +145,76 @@ function App() {
           {/* partie haut */}
           <div className="flex flex-col items-center">
 
-            {/* Logo */}
-            <img
-              src={jv88top}
-              alt="JV88"
-              className="
-                block
-                w-[90%]
-                animate-pulse
-              "
-            />
+            {/* LOGO + SERVICE + QRCODE */}
+            <div className="relative w-full">
+
+              {/* Logo principal */}
+              <img
+                src={jv88top}
+                alt="JV88"
+                className="
+                  mx-auto
+                  block
+                  w-[90%]
+                  animate-pulse
+                "
+              />
+
+              {/* BOUTONS SERVICE + QRCODE */}
+              <div
+                className="
+                  absolute
+                  right-[4%]
+                  top-[60%]
+                  z-30
+                  flex
+                  flex-col
+                  items-center
+                  gap-2
+                "
+              >
+                {/* Service */}
+                <button
+                  type="button"
+                  className="
+                    w-[12vw]
+                    max-w-21.25
+                    min-w-13.75
+                    transition-transform
+                    duration-200
+                    hover:scale-105
+                    active:scale-95
+                  "
+                >
+                  <img
+                    src={service_button}
+                    alt="Service"
+                    className="block w-full"
+                  />
+                </button>
+
+                {/* QRcode */}
+                <button
+                  type="button"
+                  className="
+                    w-[12vw]
+                    max-w-21.25
+                    min-w-13.75
+                    transition-transform
+                    duration-200
+                    hover:scale-105
+                    active:scale-95
+                  "
+                >
+                  <img
+                    src={QRcode}
+                    alt="QR Code"
+                    className="block w-full"
+                  />
+                </button>
+              </div>
+
+            </div>
 
             {/* Bisa top up */}
             <img
@@ -489,20 +583,35 @@ function App() {
           </section>
 
           {/* GAME DM IMAGES CONTENUS */}
-          <section className='mt-3 px-4 pb-10'>
-            <div className='flex flex-col space-y-2'>
-              {imagesDm.map((imgDm, index) => (
-                <img
-                  key={index}
-                  src={imgDm}
-                  alt=""
-                  className='
-                  h-auto
-                  w-full'
-                />
-              ))}
-            </div>
-          </section>
+          <section
+  ref={gameDmSectionRef}
+  className="mt-3 px-4 pb-10"
+>
+  <div className="flex flex-col space-y-2">
+    {imagesDm.map((imgDm, index) => (
+      <img
+        key={index}
+        src={imgDm}
+        alt={`Game demo ${index + 1}`}
+        className={`
+          game-dm-image
+          h-auto
+          w-full
+          ${
+            gameDmSectionVisible
+              ? 'game-dm-image-show'
+              : 'game-dm-image-hide'
+          }
+        `}
+        style={{
+          animationDelay: gameDmSectionVisible
+            ? `${index * 80}ms`
+            : '0ms',
+        }}
+      />
+    ))}
+  </div>
+</section>
 
         </main>
 
