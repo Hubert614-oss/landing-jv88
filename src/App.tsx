@@ -6,6 +6,8 @@ import bisaTopUp from './assets/imgs/bisa top up.png'
 import mencobaBtn from './assets/imgs/mencobaBtn.png'
 import gunakanAplikasi from './assets/imgs/gunakan aplikasi.png'
 import downloadBanner from './assets/imgs/1779430372473&RGUHFQYQJC&footer.png'
+import QRcode from './assets/imgs/QRcode-en.png'
+import service_button from './assets/imgs/service-button.png'
 
 //logo games
 import tembakIkan from './assets/imgs/tembakIkan.png'
