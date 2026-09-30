@@ -5,7 +5,9 @@ import jv88top from './assets/imgs/1779437088166&H6LD6KE9X8&logo.png'
 import bisaTopUp from './assets/imgs/bisa top up.png'
 import mencobaBtn from './assets/imgs/mencobaBtn.png'
 import gunakanAplikasi from './assets/imgs/gunakan aplikasi.png'
-import downloadBanner from './assets/imgs/1779430372473&RGUHFQYQJC&footer.png'
+import banner_trans from './assets/imgs/tyty.png'
+import btn_down from './assets/imgs/down.png'
+import btn_web from './assets/imgs/webbtnfl.png'
 import QRcode from './assets/imgs/QRcode-en.png'
 import service_button from './assets/imgs/service-button.png'
 
@@ -60,27 +62,6 @@ function App() {
   const [gameSectionVisible, setGameSectionVisible] = useState(false)
   const [gameDmSectionVisible, setGameDmSectionVisible] = useState(false)
 
-  // useEffect(() => {
-  //   const section = gameSectionRef.current
-
-  //   if (!section) return
-
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       setGameSectionVisible(entry.isIntersecting)
-  //     },
-  //     {
-  //       threshold: 0.25,
-  //     }
-  //   )
-
-  //   observer.observe(section)
-
-  //   return () => {
-  //     observer.disconnect()
-  //   }
-  // }, [])
-
   useEffect(() => {
     const gameSection = gameSectionRef.current
     const gameDmSection = gameDmSectionRef.current
@@ -114,6 +95,7 @@ function App() {
       observer.disconnect()
     }
   }, [])
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -156,7 +138,7 @@ function App() {
                   mx-auto
                   block
                   w-[90%]
-                  animate-pulse
+                  animate-custom-bounce
                 "
               />
 
@@ -232,26 +214,57 @@ function App() {
             {/* =================================================
                 BOUTON Mencoba Permainan
             ================================================== */}
-            <button
-              type="button"
+            <div
               className="
                 relative
                 z-30
-                mx-auto
-                block
-                w-[60%]
-                transition-transform
-                duration-100
-                hover:scale-[1.01]
-                active:scale-95
+                flex
+                w-full
+                items-center
+                justify-center
               "
             >
-              <img
-                src={mencobaBtn}
-                alt="Mencoba Permainan"
-                className="block w-full"
-              />
-            </button>
+              <p></p>
+              {/* Mencoba Permainan */}
+              <button
+                type="button"
+                className=" text-center
+                  block
+                  w-[60%]
+                  transition-transform
+                  duration-100
+                  hover:scale-[1.01]
+                  active:scale-95
+                "
+              >
+                <img
+                  src={mencobaBtn}
+                  alt="Mencoba Permainan"
+                  className="block w-full"
+                />
+              </button>
+
+              {/* Web */}
+              <button
+                type="button"
+                className=" absolute
+                  block
+                  w-[16%]
+                  max-w-40 right-2
+                  min-w-12
+                  transition-transform
+                  duration-200
+                  hover:scale-105
+                  active:scale-95
+                "
+              >
+                <img
+                  src={btn_web}
+                  alt="Web"
+                  className="block w-full"
+                />
+              </button>
+            </div>
 
             {/* =================================================
                 DESCRIPTION
@@ -584,40 +597,39 @@ function App() {
 
           {/* GAME DM IMAGES CONTENUS */}
           <section
-  ref={gameDmSectionRef}
-  className="mt-3 px-4 pb-10"
->
-  <div className="flex flex-col space-y-2">
-    {imagesDm.map((imgDm, index) => (
-      <img
-        key={index}
-        src={imgDm}
-        alt={`Game demo ${index + 1}`}
-        className={`
-          game-dm-image
-          h-auto
-          w-full
-          ${
-            gameDmSectionVisible
-              ? 'game-dm-image-show'
-              : 'game-dm-image-hide'
-          }
-        `}
-        style={{
-          animationDelay: gameDmSectionVisible
-            ? `${index * 80}ms`
-            : '0ms',
-        }}
-      />
-    ))}
-  </div>
-</section>
+            ref={gameDmSectionRef}
+            className="mt-3 px-4 pb-10"
+          >
+            <div className="flex flex-col space-y-2">
+              {imagesDm.map((imgDm, index) => (
+                <img
+                  key={index}
+                  src={imgDm}
+                  alt={`Game demo ${index + 1}`}
+                  className={`
+                    game-dm-image
+                    h-auto
+                    w-full
+                    ${gameDmSectionVisible
+                      ? 'game-dm-image-show'
+                      : 'game-dm-image-hide'
+                    }
+                  `}
+                  style={{
+                    animationDelay: gameDmSectionVisible
+                      ? `${index * 80}ms`
+                      : '0ms',
+                  }}
+                />
+              ))}
+            </div>
+          </section>
 
         </main>
 
       </div>
 
-      {/* downolad banner */}
+      {/* DOWNLOAD BANNER */}
       <div
         className="
           fixed
@@ -629,11 +641,51 @@ function App() {
           xl:max-w-210
         "
       >
-        <img
-          src={downloadBanner}
-          alt="Download JV88"
-          className="block w-full"
-        />
+
+        {/* Banner */}
+        <div className="relative w-full">
+
+          {/* Download button */}
+          <div
+            className="
+              absolute
+              inset-0
+              z-20
+              flex
+              items-center
+              justify-end
+              pr-[1.5%]
+              pointer-events-none
+            "
+          >
+            <button
+              type="button"
+              className="
+                pointer-events-auto relative -right-1 cursor-pointer
+                w-[27%]
+                max-w-90
+                transition-transform
+                duration-200
+                hover:scale-101
+                active:scale-95
+              "
+            >
+              <img
+                src={btn_down}
+                alt="Download"
+                className="block w-full"
+              />
+            </button>
+          </div>
+
+          {/* Banner */}
+          <img
+            src={banner_trans}
+            alt="JV88"
+            className="block w-full border-t border-[#603614]"
+          />
+
+        </div>
       </div>
     </div>
   )
