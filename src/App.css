@@ -112,3 +112,26 @@
 .animate-custom-bounce {
   animation: custom-bounce 1s infinite;
 }
+
+
+/* btns desc */
+@keyframes menu-button-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.92);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.01);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menu-button-enter {
+  animation: menu-button-enter 0.7s ease-out both;
+}

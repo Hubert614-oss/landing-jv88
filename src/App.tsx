@@ -2,14 +2,16 @@ import './App.css'
 import { useEffect, useRef, useState } from 'react'
 import fond from './assets/fond1.jpg'
 import jv88top from './assets/imgs/1779437088166&H6LD6KE9X8&logo.png'
-import bisaTopUp from './assets/imgs/bisa top up.png'
-import mencobaBtn from './assets/imgs/mencobaBtn.png'
-import gunakanAplikasi from './assets/imgs/gunakan aplikasi.png'
-import banner_trans from './assets/imgs/tyty.png'
-import btn_down from './assets/imgs/down.png'
-import btn_web from './assets/imgs/webbtnfl.png'
+// import banner_trans from './assets/imgs/tyty.png'
+// import btn_down from './assets/imgs/down.png'
 import QRcode from './assets/imgs/QRcode-en.png'
 import service_button from './assets/imgs/service-button.png'
+import modalQR from './assets/pop-up/modalQR.webp'
+
+import btn1 from './assets/btn/1.webp'
+import btn2 from './assets/btn/ll.png'
+import btn3 from './assets/btn/wew3e.webp'
+import btn4 from './assets/btn/4.webp'
 
 //logo games
 import tembakIkan from './assets/imgs/tembakIkan.png'
@@ -31,6 +33,26 @@ import crashDm from './assets/imgs/crashDm.png'
 import gateOfOlympusDm from './assets/imgs/gatesDm.png'
 import sweetBonanzaDm from './assets/imgs/sweetDm.png'
 
+
+const menuButtons = [
+  {
+    image: btn1,
+    alt: 'Button 1',
+
+  },
+  {
+    image: btn2,
+    alt: 'Button 2',
+  },
+  {
+    image: btn3,
+    alt: 'Button 3',
+  },
+  {
+    image: btn4,
+    alt: 'Button 4',
+  },
+]
 
 function App() {
 
@@ -61,6 +83,20 @@ function App() {
 
   const [gameSectionVisible, setGameSectionVisible] = useState(false)
   const [gameDmSectionVisible, setGameDmSectionVisible] = useState(false)
+  const [qrModalOpen, setQrModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (!qrModalOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setQrModalOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [qrModalOpen])
 
   useEffect(() => {
     const gameSection = gameSectionRef.current
@@ -135,6 +171,7 @@ function App() {
                 src={jv88top}
                 alt="JV88"
                 className="
+                md:mt-3
                   mx-auto
                   block
                   w-[90%]
@@ -178,6 +215,7 @@ function App() {
                 {/* QRcode */}
                 <button
                   type="button"
+                  onClick={() => setQrModalOpen(true)}
                   className="
                     w-[12vw]
                     max-w-21.25
@@ -196,368 +234,72 @@ function App() {
                 </button>
               </div>
 
+              {qrModalOpen && (
+                <div
+                  className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+                  onClick={() => setQrModalOpen(false)}
+                >
+                  <div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="QR Code"
+                    className="relative max-h-[90vh] max-w-[90vw]"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      aria-label="Fermer"
+                      onClick={() => setQrModalOpen(false)}
+                      className="absolute -right-3 -top-3 flex size-9 items-center justify-center rounded-full bg-white text-2xl text-black shadow-lg"
+                    >
+                      &times;
+                    </button>
+                    <img
+                      src={modalQR}
+                      alt="QR Code"
+                      className="max-h-[90vh] max-w-[90vw] object-contain"
+                    />
+                  </div>
+                </div>
+              )}
+
             </div>
-
-            {/* Bisa top up */}
-            <img
-              src={bisaTopUp}
-              alt="Bisa Top Up"
-              className="
-                relative
-                z-20
-                -mt-10
-                block
-                w-full
-              "
-            />
-
-            {/* =================================================
-                BOUTON Mencoba Permainan
-            ================================================== */}
-            <div
-              className="
-                relative
-                z-30
-                flex
-                w-full
-                items-center
-                justify-center
-              "
-            >
-              <p></p>
-              {/* Mencoba Permainan */}
-              <button
-                type="button"
-                className=" text-center
-                  block
-                  w-[60%]
-                  transition-transform
-                  duration-100
-                  hover:scale-[1.01]
-                  active:scale-95
-                "
-              >
-                <img
-                  src={mencobaBtn}
-                  alt="Mencoba Permainan"
-                  className="block w-full"
-                />
-              </button>
-
-              {/* Web */}
-              <button
-                type="button"
-                className=" absolute
-                  block
-                  w-[16%]
-                  max-w-40 right-2
-                  min-w-12
-                  transition-transform
-                  duration-200
-                  hover:scale-105
-                  active:scale-95
-                "
-              >
-                <img
-                  src={btn_web}
-                  alt="Web"
-                  className="block w-full"
-                />
-              </button>
-            </div>
-
-            {/* =================================================
-                DESCRIPTION
-            ================================================== */}
-            <img
-              src={gunakanAplikasi}
-              alt="Gunakan aplikasi untuk bermain game"
-              className="
-                relative
-                z-20
-                mt-2
-                block
-                w-full
-              "
-            />
 
           </div>
 
-          {/* card desc */}
-          <section className="mt-8 px-5 pb-2 sm:px-8">
+          {/* MENU BUTTONS */}
+          <section className="mt-15 px-5 pb-6 sm:px-8">
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col items-center gap-2">
 
-              {/* =================================================
-                  1. DOWNLOAD
-              ================================================== */}
-              <div
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-xl
-                  border
-                  border-yellow-600/40
-                  bg-linear-to-b
-                  from-[#3b2a0c]/75
-                  via-[#1b1208]/75
-                  to-[#0d0906]/40
-                  p-3
-                  shadow-[0_5px_25px_rgba(0,0,0,0.5)]
-                  transition-all
-                  duration-300
-                  hover:border-yellow-400/80
-                  hover:shadow-[0_5px_30px_rgba(212,175,55,0.2)]
-                "
-              >
-
-                {/* Golden glow */}
-                <div
+              {menuButtons.map((button, index) => (
+                <button
+                  key={index}
+                  type="button"
                   className="
-                    pointer-events-none
-                    absolute
-                    -right-16
-                    -top-16
-                    h-32
-                    w-32
-                    rounded-full
-                    bg-yellow-500/10
-                    blur-3xl
-                  "
-                />
+          group
+          relative
+          aspect-4/1 md:aspect-7/2
 
-                <div className="relative">
+          w-full
+          md:w-[98%]
+          lg:w-[78%]
+          xl:w-[92%]
+          max-w-255
 
-                  <h2
-                    className="
-                      text-center
-                      text-xl
-                      font-bold
-                      uppercase
-                      tracking-wider
-                      text-yellow-300
-                      drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]
-                      sm:text-2xl
-                    "
-                  >
-                    下载按钮
-                  </h2>
-
-                  <p
-                    className="
-                      mt-3
-                      text-center
-                      text-sm
-                      leading-6
-                      text-yellow-100/75
-                      sm:text-base
-                    "
-                  >
-                    下载JV88应用，随时随地享受精彩游戏。
-                  </p>
-
-                </div>
-              </div>
-
-              {/* =================================================
-                  2. LOGIN / REGISTER
-              ================================================== */}
-              <div
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-xl
-                  border
-                  border-yellow-600/40
-                  bg-linear-to-b
-                  from-[#3b2a0c]/75
-                  via-[#1b1208]/75
-                  to-[#0d0906]/40
-                  p-3
-                  shadow-[0_5px_25px_rgba(0,0,0,0.5)]
-                  transition-all
-                  duration-300
-                  hover:border-yellow-400/80
-                  hover:shadow-[0_5px_30px_rgba(212,175,55,0.2)]
-                "
-              >
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -left-16
-                    -top-16
-                    h-32
-                    w-32
-                    rounded-full
-                    bg-yellow-500/10
-                    blur-3xl
-                  "
-                />
-
-                <div className="relative">
-
-                  <h2
-                    className="
-                      text-center
-                      text-xl
-                      font-bold
-                      uppercase
-                      tracking-wider
-                      text-yellow-300
-                      drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]
-                      sm:text-2xl
-                    "
-                  >
-                    登录注册
-                  </h2>
-
-                  <p
-                    className="
-                      mt-3
-                      text-center
-                      text-sm
-                      leading-6
-                      text-yellow-100/75
-                      sm:text-base
-                    "
-                  >
-                    登录或注册JV88账号，进入您的个人中心。
-                  </p>
-
-                </div>
-              </div>
-
-              {/* =================================================
-                  3. AGENT / PARTNERSHIP
-              ================================================== */}
-              <div
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-xl
-                  border
-                  border-yellow-600/40
-                  bg-linear-to-b
-                  from-[#3b2a0c]/75
-                  via-[#1b1208]/75
-                  to-[#0d0906]/40
-                  p-3
-                  shadow-[0_5px_25px_rgba(0,0,0,0.5)]
-                  transition-all
-                  duration-300
-                  hover:border-yellow-400/80
-                  hover:shadow-[0_5px_30px_rgba(212,175,55,0.2)]
-                "
-              >
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -right-16
-                    -bottom-16
-                    h-32
-                    w-32
-                    rounded-full
-                    bg-yellow-500/10
-                    blur-3xl
-                  "
-                />
-
-                <div className="relative">
-
-                  <h2
-                    className="
-                      text-center
-                      text-xl
-                      font-bold
-                      uppercase
-                      tracking-wider
-                      text-yellow-300
-                      drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]
-                      sm:text-2xl
-                    "
-                  >
-                    代理加盟
-                  </h2>
-
-                  <p
-                    className="
-                      mt-3
-                      text-center
-                      text-sm
-                      leading-6
-                      text-yellow-100/75
-                      sm:text-base
-                    "
-                  >
-                    成为JV88合作代理，享受平台提供的更多合作机会。
-                  </p>
-
-                </div>
-              </div>
-
-              {/* =================================================
-                  4. VIDEO
-              ================================================== */}
-              <div
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-xl
-                  border
-                  border-yellow-600/40
-                  bg-linear-to-b
-                  from-[#3b2a0c]/75
-                  via-[#1b1208]/75
-                  to-[#0d0906]/40
-                  p-3
-                  shadow-[0_5px_25px_rgba(0,0,0,0.5)]
-                  transition-all
-                  duration-300
-                  hover:border-yellow-400/80
-                  hover:shadow-[0_5px_30px_rgba(212,175,55,0.2)]
-                "
-              >
-
-                <div className="relative">
-
-                  <h2
-                    className="
-                      text-center
-                      text-xl
-                      font-bold
-                      uppercase
-                      tracking-wider
-                      text-yellow-300
-                      drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]
-                      sm:text-2xl
-                    "
-                  >
-                    美女视频
-                  </h2>
-
-                  <p
-                    className="
-                      mt-3
-                      text-center
-                      text-sm
-                      leading-6
-                      text-yellow-100/75
-                      sm:text-base
-                    "
-                  >
-                    观看精彩视频，了解更多JV88平台内容。
-                  </p>
-
-                </div>
-              </div>
+          transition-transform
+          duration-200
+          hover:scale-[1.02]
+          active:scale-95
+        "
+                >
+                  <img
+                    src={button.image}
+                    alt={button.alt}
+                    className="block w-full"
+                  />
+                </button>
+              ))}
 
             </div>
 
@@ -566,7 +308,7 @@ function App() {
           {/* GAME IMAGES CONTENUS */}
           <section
             ref={gameSectionRef}
-            className="mt-3 px-4 pb-4"
+            className="mt-2 px-4 pb-4"
           >
             <div className="grid grid-cols-4 gap-1">
               {images.map((image, index) => (
@@ -643,10 +385,10 @@ function App() {
       >
 
         {/* Banner */}
-        <div className="relative w-full">
+        {/* <div className="relative w-full"> */}
 
-          {/* Download button */}
-          <div
+        {/* Download button */}
+        {/* <div
             className="
               absolute
               inset-0
@@ -657,8 +399,8 @@ function App() {
               pr-[1.5%]
               pointer-events-none
             "
-          >
-            <button
+          > */}
+        {/* <button
               type="button"
               className="
                 pointer-events-auto relative -right-1 cursor-pointer
@@ -675,19 +417,19 @@ function App() {
                 alt="Download"
                 className="block w-full"
               />
-            </button>
-          </div>
+            </button> */}
+      </div>
 
-          {/* Banner */}
-          <img
+      {/* Banner */}
+      {/* <img
             src={banner_trans}
             alt="JV88"
             className="block w-full border-t border-[#603614]"
-          />
+          /> */}
 
-        </div>
-      </div>
-    </div>
+      {/* </div> */}
+      {/* </div> */}
+    </div >
   )
 }
 
