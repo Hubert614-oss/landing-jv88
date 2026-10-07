@@ -8,9 +8,9 @@ import QRcode from './assets/imgs/QRcode-en.png'
 import service_button from './assets/imgs/service-button.png'
 import modalQR from './assets/pop-up/modalQR.webp'
 
-import btn1 from './assets/btn/1.webp'
-import btn2 from './assets/btn/ll.png'
-import btn3 from './assets/btn/wew3e.webp'
+import btn1 from './assets/btn/Bannière casino rouge et or étincelante.png'
+import btn2 from './assets/btn/Bannière néon d’inscription et récompenses.png'
+import btn3 from './assets/btn/33_fl.png'
 import btn4 from './assets/btn/4.webp'
 
 //logo games
@@ -33,50 +33,104 @@ import crashDm from './assets/imgs/crashDm.png'
 import gateOfOlympusDm from './assets/imgs/gatesDm.png'
 import sweetBonanzaDm from './assets/imgs/sweetDm.png'
 
+// QR
+import And from './assets/QR/android.png'
+import iOs from './assets/QR/iOS.png'
+
+// QR code url
+const urlIos = "https://direct.lc.chat/19720162?ts=1790688310240&platform=nt_android&aid=514eedbc4893b5eb&channel=javo88_id6_ntla36&dmo=CPH2387&dbr=OPPO&dst=1%3A2%3A3%3A4%3A5%3A8%3A9%3A10%3A11%3A14%3A15%3A17%3A18%3A19%3A20%3A27%3A29%3A18%3A65611%3A65614%3A33171034&language=id&user_id=563723893&user_name=CPH2387-3893&skin=bg&country=ID&adapt_editbox=1&cvf_enabled=1"
+const urlAndroid = "https://download.javo88gadget.com/android/IK3lgtAMyE4PY7zegA6P9O.apk"
+const urlWeb = "https://h5.javoplus.com/?ch=q49iQu"
+
+import appleIcon from './assets/QR/ios.svg'
+import andIcon from './assets/QR/and.svg'
 
 const menuButtons = [
   {
+    name: 'Button_1',
     image: btn1,
     alt: 'Button 1',
-
   },
   {
+    name: 'Button_2',
     image: btn2,
     alt: 'Button 2',
   },
   {
+    name: 'Button_3',
     image: btn3,
     alt: 'Button 3',
   },
   {
+    name: 'Button_4',
     image: btn4,
     alt: 'Button 4',
   },
 ]
 
+const images = [
+  tembakIkan,
+  starlight,
+  mahjong,
+  dragon,
+  quiqui,
+  crash,
+  gateOfOlympus,
+  sweetBonanza
+]
+
+const imagesDm = [
+  tembakIkanDm,
+  starlightDm,
+  mahjongDm,
+  dragonDm,
+  quiquiDm,
+  crashDm,
+  gateOfOlympusDm,
+  sweetBonanzaDm
+]
+
+function useDeviceUrl() {
+  const [deviceUrl] = useState(() => {
+    if (typeof navigator === 'undefined') return urlWeb
+
+    const userAgent = navigator.userAgent.toLowerCase()
+    const isIos = /iphone|ipad|ipod/.test(userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+
+    if (/android/.test(userAgent)) return urlAndroid
+    if (isIos) return urlIos
+    return urlWeb
+  })
+
+  return deviceUrl
+}
+
 function App() {
+  const deviceUrl = useDeviceUrl()
 
-  const images = [
-    tembakIkan,
-    starlight,
-    mahjong,
-    dragon,
-    quiqui,
-    crash,
-    gateOfOlympus,
-    sweetBonanza
-  ]
+  const handleBtnClick = (url: string) => {
+    switch (url) {
+      case 'Button_1':
+        window.open(deviceUrl)
+        break
+      case 'Button_2':
+        window.open('https://h5.javoplus.com/?ch=q49iQu')
+        break
+      case 'Button_3':
+        window.open('https://h5.javoplus.com/?ch=q49iQu')
+        break
+      case 'Button_4':
+        window.open('https://ba6cdd87b169.wild9api1.cn')
+        break
+      default:
+        break
+    }
+  }
 
-  const imagesDm = [
-    tembakIkanDm,
-    starlightDm,
-    mahjongDm,
-    dragonDm,
-    quiquiDm,
-    crashDm,
-    gateOfOlympusDm,
-    sweetBonanzaDm
-  ]
+  const handleClickService = () => {
+    window.open('https://direct.lc.chat/19720162?ts=1790688310240&platform=nt_android&aid=514eedbc4893b5eb&channel=javo88_id6_ntla36&dmo=CPH2387&dbr=OPPO&dst=1%3A2%3A3%3A4%3A5%3A8%3A9%3A10%3A11%3A14%3A15%3A17%3A18%3A19%3A20%3A27%3A29%3A18%3A65611%3A65614%3A33171034&language=id&user_id=563723893&user_name=CPH2387-3893&skin=bg&country=ID&adapt_editbox=1&cvf_enabled=1')
+  }
 
   const gameSectionRef = useRef<HTMLElement | null>(null)
   const gameDmSectionRef = useRef<HTMLElement | null>(null)
@@ -171,7 +225,7 @@ function App() {
                 src={jv88top}
                 alt="JV88"
                 className="
-                md:mt-3
+                  md:mt-3
                   mx-auto
                   block
                   w-[90%]
@@ -195,6 +249,7 @@ function App() {
                 {/* Service */}
                 <button
                   type="button"
+                  onClick={handleClickService}
                   className="
                     w-[12vw]
                     max-w-21.25
@@ -236,7 +291,7 @@ function App() {
 
               {qrModalOpen && (
                 <div
-                  className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+                  className="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4"
                   onClick={() => setQrModalOpen(false)}
                 >
                   <div
@@ -246,19 +301,87 @@ function App() {
                     className="relative max-h-[90vh] max-w-[90vw]"
                     onClick={(event) => event.stopPropagation()}
                   >
+                    {/* Bouton fermer */}
                     <button
                       type="button"
                       aria-label="Fermer"
                       onClick={() => setQrModalOpen(false)}
-                      className="absolute -right-3 -top-3 flex size-9 items-center justify-center rounded-full bg-white text-2xl text-black shadow-lg"
+                      className="
+                        absolute
+                        -right-3
+                        -top-3
+                        z-20
+                        flex
+                        size-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-white
+                        text-2xl
+                        text-black
+                        shadow-lg
+                      "
                     >
                       &times;
                     </button>
+
+                    {/* Image du popup */}
                     <img
                       src={modalQR}
                       alt="QR Code"
-                      className="max-h-[90vh] max-w-[90vw] object-contain"
+                      className="
+                        block
+                        max-h-[90vh]
+                        max-w-[95vw]
+                        object-contain
+                        md:max-w-[30vw]
+                      "
                     />
+
+                    {/* Les deux vrais QR Codes */}
+                    <div
+                      className="
+                        absolute
+                        left-1/2
+                        top-[55%]
+                        flex
+                        -translate-x-1/2
+                        -translate-y-1/2
+                        items-center
+                        gap-10
+                        sm:gap-8
+                      "
+                    >
+                      {/* Android */}
+                      <div role="img" aria-label="QR code Android" className="w-full flex flex-col items-center gap-2">
+                        <img
+                          src={andIcon}
+                          alt="Android"
+                          className="h-12 md:h-17 w-12 md:w-17"
+                        />
+                        <img
+                          src={And}
+                          alt="QR Code Android"
+                          className="h-auto w-4xl md:w-40"
+                        />
+                      </div>
+
+                      {/* iOS */}
+                      <div role="img" aria-label="QR code iOS" className="w-full flex flex-col items-center gap-2">
+                        <img
+                          src={appleIcon}
+                          alt="iOS"
+                          className="h-12 md:h-17 w-12 md:w-17"
+                        />
+                        <img
+                          src={iOs}
+                          alt="QR Code iOS"
+                          className="h-auto w-4xl md:w-40"
+                        />
+                      </div>
+
+
+                    </div>
                   </div>
                 </div>
               )}
@@ -268,7 +391,7 @@ function App() {
           </div>
 
           {/* MENU BUTTONS */}
-          <section className="mt-15 px-5 pb-6 sm:px-8">
+          <section className="mt-15 mb-2 px-5 pb-6 sm:px-8">
 
             <div className="flex flex-col items-center gap-2">
 
@@ -276,22 +399,16 @@ function App() {
                 <button
                   key={index}
                   type="button"
-                  className="
-          group
-          relative
-          aspect-4/1 md:aspect-7/2
-
-          w-full
-          md:w-[98%]
-          lg:w-[78%]
-          xl:w-[92%]
-          max-w-255
-
-          transition-transform
-          duration-200
-          hover:scale-[1.02]
-          active:scale-95
-        "
+                  onClick={() => handleBtnClick(button.name)}
+                  className={`
+                    group
+                    relative
+                    w-full
+                    transition-transform
+                    duration-200
+                    hover:scale-[1.02]
+                    active:scale-95
+                  `}
                 >
                   <img
                     src={button.image}

@@ -1,0 +1,49 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="appleGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff04a"></stop>
+      <stop offset="45%" stop-color="#ffd329"></stop>
+      <stop offset="100%" stop-color="#e98b00"></stop>
+    </linearGradient>
+
+    <filter id="appleShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#8a4b00" flood-opacity="0.8"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- Feuille -->
+  <path d="
+      M39 12
+      C40 7 44 4 49 4
+      C49 9 46 13 40 15
+      C39 14 39 13 39 12
+      Z
+    " fill="url(#appleGradient)" stroke="#b86b00" stroke-width="1.2" filter="url(#appleShadow)"></path>
+
+  <!-- Corps principal -->
+  <path d="
+      M32 18
+      C28 14 22 14 18 17
+      C12 21 11 29 13 36
+      C15 43 20 52 26 55
+      C29 56 31 53 34 53
+      C37 53 39 56 42 55
+      C48 52 53 42 54 35
+      C54 28 51 23 46 20
+      C42 17 37 17 32 18
+      Z
+    " fill="url(#appleGradient)" stroke="#b86b00" stroke-width="1.5" filter="url(#appleShadow)"></path>
+
+  <!-- Petite séparation supérieure -->
+  <path d="M31 19 C33 16 36 14 40 14" fill="none" stroke="#c87900" stroke-width="1" opacity="0.7"></path>
+
+  <!-- Reflet -->
+  <path d="
+      M19 23
+      C16 27 16 34 18 38
+      C19 40 20 40 21 39
+      C19 33 20 27 23 23
+      C22 22 20 22 19 23
+      Z
+    " fill="#fff9a0" opacity="0.55"></path>
+</svg>

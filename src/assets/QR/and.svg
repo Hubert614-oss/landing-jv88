@@ -1,0 +1,66 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="androidGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff04a"></stop>
+      <stop offset="45%" stop-color="#ffc928"></stop>
+      <stop offset="100%" stop-color="#e88900"></stop>
+    </linearGradient>
+
+    <linearGradient id="bodyGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd83d"></stop>
+      <stop offset="100%" stop-color="#ed9a00"></stop>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#8a4b00" flood-opacity="0.8"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- Antenne gauche -->
+  <path d="M25 13 L19 4" stroke="#e99a00" stroke-width="2.5" stroke-linecap="round"></path>
+
+  <!-- Antenne droite -->
+  <path d="M39 13 L45 4" stroke="#e99a00" stroke-width="2.5" stroke-linecap="round"></path>
+
+  <!-- Petites extrémités des antennes -->
+  <circle cx="19" cy="4" r="2" fill="#ffd83d"></circle>
+  <circle cx="45" cy="4" r="2" fill="#ffd83d"></circle>
+
+  <!-- Tête -->
+  <path d="
+      M16 25
+      C16 16 23 11 32 11
+      C41 11 48 16 48 25
+      L48 30
+      C48 32 46 34 44 34
+      L20 34
+      C18 34 16 32 16 30
+      Z
+    " fill="url(#androidGradient)" stroke="#b86b00" stroke-width="1.5" filter="url(#shadow)"></path>
+
+  <!-- Yeux -->
+  <circle cx="25" cy="23" r="2" fill="#392000"></circle>
+  <circle cx="39" cy="23" r="2" fill="#392000"></circle>
+
+  <!-- Corps -->
+  <path d="
+      M18 34
+      L46 34
+      L46 50
+      C46 53 44 55 41 55
+      L23 55
+      C20 55 18 53 18 50
+      Z
+    " fill="url(#bodyGradient)" stroke="#b86b00" stroke-width="1.5" filter="url(#shadow)"></path>
+
+  <!-- Bras gauche -->
+  <rect x="10" y="35" width="7" height="17" rx="3.5" fill="url(#androidGradient)" stroke="#b86b00" stroke-width="1.5"></rect>
+
+  <!-- Bras droit -->
+  <rect x="47" y="35" width="7" height="17" rx="3.5" fill="url(#androidGradient)" stroke="#b86b00" stroke-width="1.5"></rect>
+
+  <!-- Jambes -->
+  <rect x="22" y="51" width="7" height="11" rx="3" fill="url(#androidGradient)" stroke="#b86b00" stroke-width="1.5"></rect>
+
+  <rect x="35" y="51" width="7" height="11" rx="3" fill="url(#androidGradient)" stroke="#b86b00" stroke-width="1.5"></rect>
+</svg>
